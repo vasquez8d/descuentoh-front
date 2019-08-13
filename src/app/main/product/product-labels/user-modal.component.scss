@@ -1,0 +1,30 @@
+.file_input_div {
+    margin: auto;
+    width: 250px;
+    height: 40px;
+}
+
+.file_input {
+    float: left;
+}
+
+#file_input_text_div {
+    width: 200px;
+    margin-top: -8px;
+    margin-left: 5px;
+}
+
+.none {
+    display: none;
+}
+
+.simple {
+    min-width: 600px;
+    max-width: 700px;
+    max-height: 600px;
+}
+
+.image-upload {
+    max-width: 300px;
+    max-height: 200px;
+}

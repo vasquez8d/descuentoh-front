@@ -1,0 +1,142 @@
+<div id="product" class="page-layout carded fullwidth inner-scroll">
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg accent"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+
+        <!-- HEADER -->
+        <div class="header accent" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <!-- APP TITLE -->
+            <div fxLayout="row" fxLayoutAlign="start center">
+
+                <button mat-icon-button class="mr-0 mr-sm-16" [routerLink]="'/product'">
+                    <mat-icon>arrow_back</mat-icon>
+                </button>
+
+                <div fxLayout="column" fxLayoutAlign="start start"
+                    [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
+                    <div class="h2" *ngIf="pageType ==='edit'">
+                        {{product.displayName}}
+                    </div>
+                    <div class="h2" *ngIf="pageType ==='new'">
+                        ProductSet Details
+                    </div>
+                    <div class="subtitle secondary-text" *ngIf="pageType ==='edit'">
+                        <span>displayName</span>
+                    </div>
+                </div>
+            </div>
+            <!-- / APP TITLE -->
+
+            <button mat-raised-button class="save-product-button" [disabled]="productForm.invalid"
+                *ngIf="pageType ==='new'" (click)="addProduct()">
+                <span>Add</span>
+            </button>
+
+            <button mat-raised-button class="save-product-button"
+                [disabled]="productForm.invalid || productForm.pristine" *ngIf="pageType ==='edit'"
+                (click)="saveProduct()">
+                <span>Save</span>
+            </button>
+        </div>
+        <!-- / HEADER -->
+
+        <!-- CONTENT CARD -->
+        <div class="content-card">
+
+            <!-- CONTENT -->
+            <div class="content">
+
+                <form name="productForm" [formGroup]="productForm" class="product w-100-p"
+                    fxLayout="column" fxFlex>
+
+                    <mat-tab-group>
+
+                        <mat-tab label="Basic Info">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+
+                                <mat-form-field *ngIf="pageType ==='edit'" appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>productSetId</mat-label>
+                                    <input style="color: darkgrey;" matInput placeholder="productId" name="name"
+                                        readonly formControlName="id" required>
+                                </mat-form-field>
+
+                                <mat-form-field *ngIf="pageType ==='edit'" appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>name</mat-label>
+                                    <input style="color: darkgrey;" matInput placeholder="name" name="name" readonly
+                                        formControlName="name" required>
+                                </mat-form-field>
+
+                                <mat-form-field appearance="outline" floatLabel="always" class="w-100-p">
+                                    <mat-label>displayName</mat-label>
+                                    <input matInput placeholder="displayName" name="displayName"
+                                        formControlName="displayName" required>
+                                </mat-form-field>
+
+                                <button color="warn" mat-raised-button class="save-product-button"
+                                    *ngIf="pageType ==='edit'" (click)="deleteProductSet()">
+                                    <span>Delete</span>
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+
+                        </mat-tab>
+
+                        <mat-tab label="Products" *ngIf="pageType ==='edit'">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div fxLayout="row wrap" fxLayoutAlign="start start">
+
+                                    <div *ngFor="let product of productsInProductSet">
+
+                                        <div class="fuse-card" style="margin: 10px;">
+
+                                            <div style="margin-top: 10px;" class="p-16 pt-0 line-height-1.75">
+                                                <div class="h4 primary-text"><strong>displayName</strong></div>
+                                                <p style="font-size: 12px; margin-top: -5px;">{{product.displayName}}
+                                                </p>
+                                                <div class="h4 primary-text"><strong>description</strong></div>
+                                                <p style="font-size: 12px; margin-top: -5px;">{{product.description}}
+                                                </p>
+                                                <div class="h4 primary-text"><strong>productCategory</strong></div>
+                                                <p style="font-size: 12px; margin-top: -5px;">
+                                                    {{product.productCategory}}</p>
+                                            </div>
+
+                                            <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
+                                                <button mat-button (click)="detailsProductInProductSet(product.name)"
+                                                    color="accent">Details</button>
+                                                <button mat-button (click)="deleteProductInProductSet(product.name)"
+                                                    color="warn">Delete</button>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <button (click)="addProductInProductSet()" style="margin: 10px;" mat-mini-fab>
+                                        <mat-icon>add</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                        </mat-tab>
+
+                    </mat-tab-group>
+
+                </form>
+
+            </div>
+            <!-- / CONTENT -->
+
+        </div>
+        <!-- / CONTENT CARD -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
