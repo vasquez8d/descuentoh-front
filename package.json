@@ -57,7 +57,7 @@
         "ngx-cookie-service": "2.2.0",
         "ngx-webcam": "0.2.5",
         "perfect-scrollbar": "1.4.0",
-        "prismjs": "1.16.0",
+        "prismjs": "1.24.0",
         "rxjs": "6.5.2",
         "sweetalert2": "8.14.0",
         "web-animations-js": "github:angular/web-animations-js#release_pr208",
